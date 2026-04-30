@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tech Close News</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar" aria-label="Market close dashboard controls">
+        <div>
+          <p class="eyebrow">US close monitor</p>
+          <h1>Top technology gainers with fresh news</h1>
+        </div>
+        <div class="actions">
+          <button id="refreshButton" class="icon-button" type="button" title="Refresh now" aria-label="Refresh now">
+            <span aria-hidden="true">R</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="status-grid" aria-live="polite">
+        <div class="metric">
+          <span>Market date</span>
+          <strong id="marketDate">Loading</strong>
+        </div>
+        <div class="metric">
+          <span>Last pull</span>
+          <strong id="lastPull">Loading</strong>
+        </div>
+        <div class="metric">
+          <span>Next regular close</span>
+          <strong id="nextClose">Loading</strong>
+        </div>
+        <div class="metric">
+          <span>Source</span>
+          <strong id="sourceLabel">Nasdaq + Yahoo</strong>
+        </div>
+      </section>
+
+      <section class="layout">
+        <aside class="rank-panel" aria-label="Ranked gainers">
+          <div class="panel-heading">
+            <h2>Rank</h2>
+            <span id="companyCount">0</span>
+          </div>
+          <ol id="rankList" class="rank-list"></ol>
+        </aside>
+
+        <section class="detail-panel" aria-label="Company news">
+          <div id="emptyState" class="empty-state">Loading market data...</div>
+          <div id="companyGrid" class="company-grid"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
