@@ -12,6 +12,7 @@ const NASDAQ_SCREENER_URL =
 const NASDAQ_NEWS_URL = "https://api.nasdaq.com/api/news/topic/articlebysymbol";
 const YAHOO_SEARCH_URL = "https://query1.finance.yahoo.com/v1/finance/search";
 const TECH_SECTOR = "Technology";
+const MIN_MID_LARGE_CAP = 2_000_000_000;
 const NEWS_PER_COMPANY = 3;
 
 const sourceHeaders = {
@@ -201,6 +202,8 @@ async function buildSnapshot(trigger = "manual") {
       (row) =>
         row.symbol &&
         row.sector === TECH_SECTOR &&
+        row.marketCap !== null &&
+        row.marketCap >= MIN_MID_LARGE_CAP &&
         row.percentChange !== null &&
         row.percentChange > 0
     )
@@ -224,6 +227,11 @@ async function buildSnapshot(trigger = "manual") {
     sources: {
       movers: "Nasdaq screener",
       news: "Nasdaq symbol news"
+    },
+    criteria: {
+      sector: TECH_SECTOR,
+      minMarketCap: MIN_MID_LARGE_CAP,
+      marketCapBand: "mid to large cap"
     },
     companies
   };

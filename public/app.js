@@ -7,7 +7,7 @@ const elements = {
   marketDate: document.querySelector("#marketDate"),
   lastPull: document.querySelector("#lastPull"),
   nextClose: document.querySelector("#nextClose"),
-  sourceLabel: document.querySelector("#sourceLabel"),
+  criteriaLabel: document.querySelector("#criteriaLabel"),
   companyCount: document.querySelector("#companyCount"),
   rankList: document.querySelector("#rankList"),
   emptyState: document.querySelector("#emptyState"),
@@ -160,7 +160,7 @@ function renderSnapshot(snapshot) {
   elements.marketDate.textContent = snapshot.marketDate || "n/a";
   elements.lastPull.textContent = formatTime(snapshot.refreshedAt);
   elements.nextClose.textContent = snapshot.nextRegularClose || "n/a";
-  elements.sourceLabel.textContent = `${snapshot.sources?.movers || "Market"} + ${snapshot.sources?.news || "News"}`;
+  elements.criteriaLabel.textContent = `${snapshot.criteria?.sector || "Tech"}, ${formatMarketCap(snapshot.criteria?.minMarketCap || 0)}+`;
   renderRank(companies);
   renderCompanies(companies);
 }
